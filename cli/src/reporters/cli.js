@@ -10,10 +10,10 @@ function report(results) {
 
   const maxFileLength = getMaxFileLength(files)
 
-  files.forEach(function(row) {
+  files.forEach(function (row) {
     printBlockHeader(row)
 
-    row.filesMatched.forEach(function(file) {
+    row.filesMatched.forEach(function (file) {
       printRow(file, row, maxFileLength)
     })
   })
@@ -26,8 +26,8 @@ module.exports = { report }
 function getMaxFileLength(files) {
   let maxFileLength = 0
 
-  files.forEach(function(row) {
-    row.filesMatched.forEach(function(file) {
+  files.forEach(function (row) {
+    row.filesMatched.forEach(function (file) {
       if (file.path.length > maxFileLength) maxFileLength = file.path.length
     })
   })
@@ -73,7 +73,7 @@ function getOperator(file) {
   const map = {
     '>': colors.fail('>'),
     '<': colors.pass('<'),
-    '=': colors.pass('=')
+    '=': colors.pass('='),
   }
 
   return map[file.operator]

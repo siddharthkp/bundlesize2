@@ -1,0 +1,14 @@
+{
+  "name": "bundlesize-github-reporter",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "build": "echo nothing"
+  },
+  "author": "siddharthkp",
+  "dependencies": {
+    "@octokit/auth-app": "^2.4.5",
+    "@octokit/rest": "^17.6.0"
+  },
+  "devDependencies": {}
+}
