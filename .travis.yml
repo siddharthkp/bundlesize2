@@ -3,8 +3,9 @@ node_js:
   - 14 # Latest
   - 12 # LTS
 cache:
+  yarn: true
   directories:
     - node_modules
 notifications:
   email: false
-script: cd cli && npm test
+script: cd cli && yarn && npm test
