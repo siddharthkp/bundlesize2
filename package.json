@@ -1,0 +1,24 @@
+{
+  "name": "bundlesize2",
+  "version": "0.0.1",
+  "description": "Keep your bundle size in check",
+  "main": "index.js",
+  "bin": {
+    "bundlesize": "index.js"
+  },
+  "scripts": {
+    "test": "ava -v tests/index.js"
+  },
+  "dependencies": {
+    "bytes": "^3.1.0",
+    "commander": "^5.1.0",
+    "cosmiconfig": "5.2.1",
+    "gzip-size": "^5.1.1",
+    "prettycli": "^1.4.3",
+    "right-pad": "^1.0.1"
+  },
+  "devDependencies": {
+    "ava": "^3.7.1",
+    "execa": "^4.0.0"
+  }
+}
