@@ -7,3 +7,4 @@ cache:
     - node_modules
 notifications:
   email: false
+script: cd cli && npm test
