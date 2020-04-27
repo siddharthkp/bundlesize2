@@ -9,10 +9,10 @@ module.exports = {
     info: chalk.magenta,
   },
   WithoutColors: {
-    subtle: value => value,
-    pass: value => value,
-    fail: value => value,
-    title: value => value,
-    info: value => value,
+    subtle: (...strings) => strings.join(' '),
+    pass: (...strings) => strings.join(' '),
+    fail: (...strings) => strings.join(' '),
+    title: (...strings) => strings.join(' '),
+    info: (...strings) => strings.join(' '),
   },
 }

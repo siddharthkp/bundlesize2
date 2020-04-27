@@ -61,10 +61,10 @@ function getRow(file, row, maxFileLength, colors) {
 }
 
 function getTitle({ pass, fail }, colors) {
-  let line
+  let line = ''
 
-  if (pass) line = colors.pass(' ', pass, plur('check', pass), 'passed')
-  if (fail) line = colors.fail(' ', fail, plur('check', fail), 'failed')
+  if (pass) line += colors.pass(' ', pass, plur('check', pass), 'passed')
+  if (fail) line += colors.fail(' ', fail, plur('check', fail), 'failed')
 
   return line
 }
