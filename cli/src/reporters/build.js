@@ -14,8 +14,8 @@ function error(err) {
   fail()
 }
 
-function report(results) {
-  if (results.status === 'fail') fail()
+function report(summary) {
+  if (summary.status === 'fail') fail()
   else pass()
 }
 
