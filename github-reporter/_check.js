@@ -34,7 +34,15 @@ const getToken = async ({ installationId }) => {
   return token
 }
 
-const createCheck = async ({ token, name, owner, repo, sha, output }) => {
+const createCheck = async ({
+  token,
+  name,
+  owner,
+  repo,
+  sha,
+  conclusion,
+  output,
+}) => {
   const octokit = new Octokit({ auth: token })
 
   await octokit.checks.create({
@@ -42,7 +50,7 @@ const createCheck = async ({ token, name, owner, repo, sha, output }) => {
     owner,
     repo,
     head_sha: sha,
-    conclusion: 'success',
+    conclusion,
     output,
   })
 }
@@ -50,6 +58,7 @@ const createCheck = async ({ token, name, owner, repo, sha, output }) => {
 const run = async ({
   repo: repositoryPath,
   sha,
+  status,
   title = '',
   summary = '',
   text = '',
@@ -89,7 +98,8 @@ const run = async ({
   console.log('3/4 token', token)
 
   // create check
-  await createCheck({ token, name, owner, repo, sha, output })
+  const conclusion = status === 'fail' ? 'failure' : 'success'
+  await createCheck({ token, name, owner, repo, sha, conclusion, output })
   console.log('4/4 end of request \n\n')
 
   return { status: 200, message: 'Added check' }
