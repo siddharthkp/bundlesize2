@@ -64,6 +64,7 @@ function getTitle({ pass, fail }, colors) {
   let line = ''
 
   if (pass) line += colors.pass(' ', pass, plur('check', pass), 'passed')
+  if (pass && fail) line += colors.subtle(',')
   if (fail) line += colors.fail(' ', fail, plur('check', fail), 'failed')
 
   return line
