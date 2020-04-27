@@ -9,7 +9,7 @@ async function report(summary) {
   const body = {
     repo,
     sha,
-    status,
+    status: summary.status,
     title: summary.title,
     summary: summary.title,
     text: summary.details,
