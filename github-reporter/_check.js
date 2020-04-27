@@ -67,15 +67,18 @@ const run = async ({
   const repo = repositoryPath.split('/')[1]
   console.log('1/4 repo', repositoryPath)
 
-  const parsedText = text
-    .replace(
-      /✔/g,
-      '<img src="https://raw.githubusercontent.com/siddharthkp/bundlesize2/master/github-reporter/public/check-pass.svg"></img>'
-    )
-    .replace(
-      /✖/g,
-      '<img src="https://raw.githubusercontent.com/siddharthkp/bundlesize2/master/github-reporter/public/check-fail.svg"></img>'
-    )
+  const parsedText =
+    '<pre>' +
+    text
+      .replace(
+        /✔/g,
+        '<img src="https://raw.githubusercontent.com/siddharthkp/bundlesize2/master/github-reporter/public/check-pass.svg"></img>'
+      )
+      .replace(
+        /✖/g,
+        '<img src="https://raw.githubusercontent.com/siddharthkp/bundlesize2/master/github-reporter/public/check-fail.svg"></img>'
+      ) +
+    '</pre>'
 
   // check output
   const output = { title, summary, text: parsedText }
