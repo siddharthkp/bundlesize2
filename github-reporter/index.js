@@ -3,7 +3,7 @@ const check = require('./_check')
 module.exports = async (req, res) => {
   const data = req.body
   if (!data) {
-    res.json({ message: '200 OKAY' })
+    res.json({ message: '200 Okay' })
     return
   }
 
