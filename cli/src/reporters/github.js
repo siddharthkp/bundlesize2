@@ -5,13 +5,13 @@ const fetch = require('node-fetch')
 let API = 'bundlesize-github-reporter.sid.now.sh'
 if (ci === 'custom') API = 'http://localhost:3000'
 
-function report(results) {
+function report(summary) {
   const body = {
     repo,
     sha,
-    title: '',
-    summary: '',
-    text: '',
+    title: summary.title,
+    summary: summary.title,
+    text: summary.details,
   }
 
   fetch(API, {
