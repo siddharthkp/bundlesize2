@@ -11,7 +11,6 @@ async function report(summary) {
     sha,
     status: summary.status,
     title: summary.title,
-    summary: summary.title,
     text: summary.details,
   }
 
