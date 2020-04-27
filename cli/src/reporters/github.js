@@ -5,7 +5,7 @@ const fetch = require('node-fetch')
 let API = 'https://bundlesize-github-reporter.sid.now.sh'
 if (ci === 'custom') API = 'http://localhost:3000'
 
-function report(summary) {
+async function report(summary) {
   const body = {
     repo,
     sha,
@@ -14,7 +14,7 @@ function report(summary) {
     text: summary.details,
   }
 
-  fetch(API, {
+  await fetch(API, {
     method: 'post',
     body: JSON.stringify(body),
     headers: { 'Content-Type': 'application/json' },

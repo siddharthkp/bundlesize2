@@ -10,16 +10,20 @@ const github = require('./src/reporters/github')
 const build = require('./src/reporters/build')
 const summarize = require('./src/utils/summarize')
 
-try {
+const run = async () => {
   const results = analyse(files)
   const summary = summarize(results)
   cli.report(summary)
 
   if (ci && platform === 'github') {
     const summaryWithoutColors = summarize(results, { colors: false })
-    github.report(summaryWithoutColors)
+    await github.report(summaryWithoutColors)
   }
   build.report(summary)
+}
+
+try {
+  run()
 } catch (err) {
   build.error(err)
 }
