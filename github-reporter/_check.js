@@ -18,7 +18,13 @@ const getInstallation = async ({ owner, repo }) => {
     const installationId = data.id
     return { data: { installationId } }
   } catch (error) {
-    console.log(error)
+    console.log({
+      method: error.request.method,
+      url: error.request.url,
+      status: error.status,
+      name: error.name,
+      documentation_url: error.documentation_url,
+    })
     return { error }
   }
 }
@@ -54,7 +60,7 @@ const run = async ({
 
   // check output
   const output = { title, summary, text }
-  console.log('1/4 output', JSON.stringify(output))
+  console.log('1/4 output', output)
 
   // get installation id for repo
   const { data, error } = await getInstallation({ owner, repo })

@@ -2,21 +2,23 @@ const rightpad = require('right-pad')
 const figures = require('figures')
 const bytes = require('bytes')
 const plur = require('plur')
-const colors = require('./colors')
+const { Colors, WithoutColors } = require('./colors')
 
-const summarize = results => {
+const summarize = (results, options = { colors: true }) => {
+  const colors = options.color === false ? WithoutColors : Colors
+
   const status = results.status
-  const title = getTitle(results.counter)
+  const title = getTitle(results.counter, colors)
 
   const files = results.files
   const maxFileLength = getMaxFileLength(files)
 
   let details = ``
   files.forEach(function (row) {
-    details += getBlockHeader(row)
+    details += getBlockHeader(row, colors)
 
     row.filesMatched.forEach(function (file) {
-      details += getRow(file, row, maxFileLength)
+      details += getRow(file, row, maxFileLength, colors)
     })
   })
 
@@ -37,13 +39,13 @@ function getMaxFileLength(files) {
   return maxFileLength
 }
 
-function getBlockHeader(row) {
+function getBlockHeader(row, colors) {
   return ['\n', colors.subtle(`${figures.line} ${row.path}`), '\n'].join('')
 }
 
-function getRow(file, row, maxFileLength) {
-  const symbol = getSymbol(file)
-  const operator = getOperator(file)
+function getRow(file, row, maxFileLength, colors) {
+  const symbol = getSymbol(file, colors)
+  const operator = getOperator(file, colors)
 
   return [
     ' ',
@@ -58,7 +60,7 @@ function getRow(file, row, maxFileLength) {
   ].join(' ')
 }
 
-function getTitle({ pass, fail }) {
+function getTitle({ pass, fail }, colors) {
   let line
 
   if (pass) line = colors.pass(' ', pass, plur('check', pass), 'passed')
@@ -67,11 +69,11 @@ function getTitle({ pass, fail }) {
   return line + '\n'
 }
 
-function getSymbol(file) {
+function getSymbol(file, colors) {
   return file.pass ? colors.pass(figures.tick) : colors.fail(figures.cross)
 }
 
-function getOperator(file) {
+function getOperator(file, colors) {
   const map = {
     '>': colors.fail('>'),
     '<': colors.pass('<'),

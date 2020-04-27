@@ -26,6 +26,8 @@ function report(summary) {
           console.log(json.message)
           process.exit(1)
         })
+      } else {
+        console.log('Added check')
       }
     })
     .catch(error => console.log(error))
