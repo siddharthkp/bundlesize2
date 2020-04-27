@@ -5,7 +5,7 @@ const plur = require('plur')
 const { Colors, WithoutColors } = require('./colors')
 
 const summarize = (results, options = { colors: true }) => {
-  const colors = options.color === false ? WithoutColors : Colors
+  const colors = options.colors === false ? WithoutColors : Colors
 
   const status = results.status
   const title = getTitle(results.counter, colors)
@@ -66,7 +66,7 @@ function getTitle({ pass, fail }, colors) {
   if (pass) line = colors.pass(' ', pass, plur('check', pass), 'passed')
   if (fail) line = colors.fail(' ', fail, plur('check', fail), 'failed')
 
-  return line + '\n'
+  return line
 }
 
 function getSymbol(file, colors) {

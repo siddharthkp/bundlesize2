@@ -27,7 +27,7 @@ function report(summary) {
           process.exit(1)
         })
       } else {
-        console.log('Added check')
+        console.log('Added check to GitHub')
       }
     })
     .catch(error => console.log(error))
