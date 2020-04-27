@@ -10,7 +10,7 @@ async function report(summary) {
     repo,
     sha,
     status: summary.status,
-    title: summary.title,
+    title: summary.summary,
     text: summary.details,
   }
 

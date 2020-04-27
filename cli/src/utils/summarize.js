@@ -8,7 +8,6 @@ const summarize = (results, options = { colors: true }) => {
   const colors = options.colors === false ? WithoutColors : Colors
 
   const status = results.status
-  const title = getTitle(results.counter, colors)
 
   const files = results.files
   const maxFileLength = getMaxFileLength(files)
@@ -22,7 +21,9 @@ const summarize = (results, options = { colors: true }) => {
     })
   })
 
-  return { status, title, details }
+  const summary = getSummary(results.counter, colors)
+
+  return { status, details, summary }
 }
 
 module.exports = summarize
@@ -60,7 +61,7 @@ function getRow(file, row, maxFileLength, colors) {
   ].join(' ')
 }
 
-function getTitle({ pass, fail }, colors) {
+function getSummary({ pass, fail }, colors) {
   let line = ''
 
   if (pass) line += colors.pass(' ', pass, plur('check', pass), 'passed')
