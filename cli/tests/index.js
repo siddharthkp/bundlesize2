@@ -1,7 +1,7 @@
 const test = require('ava')
 const { commandSync: cmd } = require('execa')
 
-const bundlesize = `CI=false node ../../../index`
+const bundlesize = `INTERNAL_SKIP_CACHE=true node ../../../index`
 
 function run(fixture, customParams = '') {
   let output
