@@ -71,8 +71,7 @@ function getRow({ file, cachedFile, row, maxFileLength, baseBranch, colors }) {
     operator,
     row.maxSize,
     colors.subtle(row.compression || 'gzip'),
-    '  ',
-    diff,
+    diff ? '  ' + diff : null,
     '\n',
   ].join(' ')
 }
