@@ -2,6 +2,7 @@ const check = require('./_check')
 
 module.exports = async (req, res) => {
   const data = req.body
+  console.log(data)
   if (!data) {
     res.json({ message: '200 Okay' })
     return

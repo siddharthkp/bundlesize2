@@ -18,11 +18,13 @@ const run = async () => {
   }
   const cachedResults = await cache.read()
 
-  const summary = summarize(results)
+  const summary = summarize(results, cachedResults)
   cli.report(summary)
 
   if (ci && platform === 'github') {
-    const summaryWithoutColors = summarize(results, { colors: false })
+    const summaryWithoutColors = summarize(results, cachedResults, {
+      colors: false,
+    })
     // await github.report(summaryWithoutColors)
   }
   build.report(summary)

@@ -2,18 +2,18 @@ const { ci, repo, branch, sha } = require('ci-env')
 const fetch = require('node-fetch')
 
 let API = 'https://bundlesize-cache.sid.now.sh'
-if (ci === 'custom') API = 'http://localhost:3001/cache'
+// if (ci === 'custom') API = 'http://localhost:3001'
 
 const api = {
   get: async ({ repo }) => {
-    return await fetch(API + '/' + repo, {
+    return await fetch(API + '?repo=' + repo, {
       method: 'get',
       headers: { 'Content-Type': 'application/json' },
     })
       .then(res => res.json())
-      .then(json => ({
-        filesMatched: JSON.parse(json.filesMatched),
-      }))
+      .then(json => {
+        return JSON.parse(json.filesMatched)
+      })
       .catch(error => console.log(error))
   },
   put: async ({ repo, branch, sha, filesMatched }) => {
