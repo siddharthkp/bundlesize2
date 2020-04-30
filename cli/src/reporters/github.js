@@ -1,8 +1,8 @@
 const { ci, repo, sha } = require('ci-env')
 const fetch = require('node-fetch')
 
-let API = 'https://bundlesize-github-reporter.sid.now.sh'
-if (ci === 'custom') API = 'http://localhost:3000'
+let API = 'https://bundlesize-github-reporter.now.sh'
+// if (ci === 'custom') API = 'http://localhost:3000'
 
 async function report(summary) {
   const body = {
