@@ -22,7 +22,7 @@ const run = async () => {
   const summary = summarize(results, cachedResults)
   cli.report(summary)
 
-  if (ci && platform === 'github') {
+  if (ci && platform === 'github' && !process.env.INTERNAL_SKIP_CHECK) {
     const summaryWithoutColors = summarize(results, cachedResults, {
       colors: false,
     })
