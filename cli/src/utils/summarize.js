@@ -6,7 +6,7 @@ const { Colors, WithoutColors } = require('./colors')
 
 const summarize = (
   results,
-  cachedResults,
+  cachedResults = [],
   options = { baseBranch: 'master', colors: true }
 ) => {
   const colors = options.colors === false ? WithoutColors : Colors

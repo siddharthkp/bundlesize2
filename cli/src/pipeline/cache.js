@@ -43,6 +43,8 @@ const getFilesMatched = ({ files }) => {
 
 const cache = {
   read: async () => {
+    if (!repo) return
+
     const cachedResults = await api.get({ repo })
     return cachedResults
   },

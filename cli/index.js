@@ -25,7 +25,7 @@ const run = async () => {
     const summaryWithoutColors = summarize(results, cachedResults, {
       colors: false,
     })
-    // await github.report(summaryWithoutColors)
+    await github.report(summaryWithoutColors)
   }
   build.report(summary)
 }
