@@ -13,6 +13,7 @@ const summarize = require('./src/utils/summarize')
 
 const run = async () => {
   const results = analyse(files)
+
   if (ci && branch === 'master') {
     await cache.save(results)
   }

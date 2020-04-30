@@ -1,14 +1,14 @@
 const test = require('ava')
 const { commandSync: cmd } = require('execa')
 
-const bundlesize = `node ../../../index`
+const bundlesize = `CI=false node ../../../index`
 
 function run(fixture, customParams = '') {
   let output
 
   try {
     output = cmd(`${bundlesize} ${customParams}`, {
-      cwd: `tests/fixtures/${fixture}`
+      cwd: `tests/fixtures/${fixture}`,
     })
   } catch (error) {
     output = error
