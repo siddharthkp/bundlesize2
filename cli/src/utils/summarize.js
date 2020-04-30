@@ -4,13 +4,9 @@ const bytes = require('bytes')
 const plur = require('plur')
 const { Colors, WithoutColors } = require('./colors')
 
-const summarize = (
-  results,
-  cachedResults = [],
-  options = { baseBranch: 'master', colors: true }
-) => {
+const summarize = (results, cachedResults = [], options = {}) => {
   const colors = options.colors === false ? WithoutColors : Colors
-  const { baseBranch } = options
+  const baseBranch = options.baseBranch || 'master'
 
   const status = results.status
 

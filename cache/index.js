@@ -31,7 +31,7 @@ module.exports = async (req, res) => {
           .orderBy('created_at', 'desc')
           .limit(1)
 
-        let filesMatched = {}
+        let filesMatched = []
         if (_rows.length) filesMatched = _rows[0].filesMatched
 
         return res.json({ filesMatched })

@@ -12,7 +12,8 @@ const api = {
     })
       .then(res => res.json())
       .then(json => {
-        return JSON.parse(json.filesMatched)
+        if (json.filesMatched) return JSON.parse(json.filesMatched)
+        else return []
       })
       .catch(error => console.log(error))
   },
