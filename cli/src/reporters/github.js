@@ -1,4 +1,3 @@
-// get repository from CI environment
 const { ci, repo, sha } = require('ci-env')
 const fetch = require('node-fetch')
 

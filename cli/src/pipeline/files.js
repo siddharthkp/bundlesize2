@@ -1,6 +1,5 @@
 const fs = require('fs')
 const glob = require('glob')
-const bytes = require('bytes')
 const { error } = require('prettycli')
 
 const config = require('./config')
@@ -20,7 +19,7 @@ config.files.map(row => {
 
   if (!row.filesMatched.length) {
     error(`There is no matching file for ${row.path} in ${process.cwd()}`, {
-      silent: true
+      silent: true,
     })
   }
 })
