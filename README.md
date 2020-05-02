@@ -46,46 +46,45 @@ npx bundlesize2
 
 1. Option 1: Create a `bundlesize.config.json` (recommended)
 
+Format:
 
-   Format:
+```json
+{
+  "files": [
+    {
+      "path": "./build/vendor.js",
+      "maxSize": "30 kB"
+    },
+    {
+      "path": "./build/chunk-*.js",
+      "maxSize": "10 kB"
+    }
+  ]
+}
+```
 
-   ```json
-   {
-     "files": [
-       {
-          "path": "./build/vendor.js",
-          "maxSize": "30 kB"
-       },
-       {
-          "path": "./build/chunk-*.js",
-          "maxSize": "10 kB"
-       }
-     ]
-   }
-   ```
-   
-   The file is expected to be at the project root. But, you can give a different path by using the `--config` flag:
+The file is expected to be at the project root. But, you can give a different path by using the `--config` flag:
 
-   ```
-   bundlesize --config configs/bundlesize.json
-   ```
+```
+bundlesize --config configs/bundlesize.json
+```
 
 Option 2: You can also put the config in `package.json`
 
-   ```json
-   {
-     "name": "your cool library",
-     "version": "1.1.2",
-     "bundlesize": [
-       {
-         "path": "./build/vendor.js",
-         "maxSize": "3 kB"
-       }
-     ]
-   }
-   ```
-   
-   Notice that the key here is `bundlesize` instead of `files`. 
+```json
+{
+  "name": "your cool library",
+  "version": "1.1.2",
+  "bundlesize": [
+    {
+      "path": "./build/vendor.js",
+      "maxSize": "3 kB"
+    }
+  ]
+}
+```
+
+Notice that the key here is `bundlesize` instead of `files`.
 
 &nbsp;
 
@@ -152,7 +151,7 @@ Option 2: You can also put the config in `package.json`
 
 &nbsp;
 
-#### Build status for GitHub
+#### Build status and Checks for GitHub
 
 &nbsp;
 
@@ -160,7 +159,10 @@ If your repository is hosted on GitHub, you can set bundlesize up to create a "c
 
 ![build status](https://cdn.rawgit.com/siddharthkp/bundlesize/master/art/status.png)
 
-To enable checks, [authorize `bundlesize` to add checks](https://github.com/apps/bundlesize2) (Does not need access to your code)
+To enable checks,
+
+1. Run `bundlesize` with the flag `bundlesize --enable-github-checks`.
+2. [authorize `bundlesize` to add checks](https://github.com/apps/bundlesize2) (Does not need access to your code)
 
 Checks work with [Travis CI](https://travis-ci.org), [CircleCI](https://circleci.com/), [Wercker](http://www.wercker.com), and [Drone](http://readme.drone.io/).
 
@@ -170,7 +172,7 @@ Using a different CI? You will need to supply an additional 5 environment variab
 - `CI_REPO_NAME` given the repo `https://github.com/myusername/myrepo` would be `myrepo`
 - `CI_COMMIT_MESSAGE` the commit message
 - `CI_COMMIT_SHA` the SHA of the CI commit, in [Jenkins](https://jenkins.io/) you would use `${env.GIT_COMMIT}`
-- `CI=true` usually set automtically in CI enviroments 
+- `CI=true` usually set automtically in CI enviroments
 
 &nbsp;
 
