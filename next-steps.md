@@ -1,3 +1,4 @@
+- [ ] make checks opt in
 - [ ] pass ci build if failed check was added
 - [ ] improve title message based on file
 - [ ] allow customisation of base branch
