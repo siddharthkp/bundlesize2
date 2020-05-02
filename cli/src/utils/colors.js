@@ -1,4 +1,3 @@
-process.env.FORCE_COLOR = 1
 const chalk = require('chalk')
 
 module.exports = {
