@@ -14,7 +14,6 @@ const summarize = (results, cachedResults = [], options = {}) => {
   const maxFileLength = getMaxFileLength(files)
 
   let details = ``
-  let failedRows = []
 
   files.forEach(function (row) {
     details += getBlockHeader(row, colors)
@@ -30,15 +29,11 @@ const summarize = (results, cachedResults = [], options = {}) => {
         colors,
       })
       details += detailRow
-
-      if (!file.pass) {
-        failedRows.push({ file, cachedFile, baseBranch, row })
-      }
     })
   })
 
   const summary = getSummary(results.counter, colors)
-  const title = getTitle(results.counter, summary, failedRows, colors)
+  const title = getTitle(results.counter, details, summary)
 
   return { status, details, summary, title }
 }
@@ -90,25 +85,25 @@ function getSummary({ pass, fail }, colors) {
   return line
 }
 
-function getTitle(counter, summary, failedRows, colors) {
-  if (counter.fail !== 1) {
-    return summary
-  } else {
-    const { file, cachedFile, row, baseBranch } = failedRows[0]
+function getTitle(counter, details, summary) {
+  // loooool, this is such a hack
+  // we read the details string and pick the row out of it
 
-    const diff = getDiffFromCache(file, cachedFile, baseBranch, colors)
-
-    return [
-      file.path,
-      '  ',
-      bytes(file.size),
-      '>',
-      row.maxSize,
-      colors.subtle(row.compression || 'gzip'),
-      diff ? '  ' + diff : null,
-      '\n',
-    ].join(' ')
-  }
+  if (counter.fail === 1) {
+    const row = details
+      .split('\n')
+      .find(row => row.includes(figures.cross))
+      .replace(figures.cross, '')
+      .trimStart()
+    return row
+  } else if (counter.pass === 1) {
+    const row = details
+      .split('\n')
+      .find(row => row.includes(figures.tick))
+      .replace(figures.tick, '')
+      .trimStart()
+    return row
+  } else return summary
 }
 
 function getSymbol(file, colors) {
