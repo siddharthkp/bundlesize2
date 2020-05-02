@@ -1,6 +1,6 @@
 {
   "name": "bundlesize2",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "Keep your bundle size in check",
   "main": "index.js",
   "bin": {
@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "bytes": "^3.1.0",
+    "chalk": "^4.0.0",
     "ci-env": "^1.12.0",
     "commander": "^5.1.0",
     "cosmiconfig": "5.2.1",
@@ -19,7 +20,6 @@
     "gzip-size": "^5.1.1",
     "node-fetch": "^2.6.0",
     "plur": "^4.0.0",
-    "prettycli": "^1.4.3",
     "right-pad": "^1.0.1"
   },
   "devDependencies": {

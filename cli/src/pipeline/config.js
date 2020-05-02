@@ -1,8 +1,8 @@
 const cosmiconfig = require('cosmiconfig')
-const { error } = require('prettycli')
 const program = require('commander')
 const fs = require('fs')
 const debug = require('../utils/debug')
+const error = require('../utils/error')
 
 // default places we check
 const configPaths = ['package.json', 'bundlesize.config.json']
@@ -29,12 +29,12 @@ if (program.config) {
   if (!fs.existsSync(program.config)) {
     // throw error if file doesn't exist
     error(
-      `Custom config file does not exist. Make sure the path is relative to the project root.
+      `
+Custom config file does not exist. Make sure the path is relative to the project root.
 
-      You can read about the configuration options here:
-      https://github.com/siddharthkp/bundlesize#configuration
-    `,
-      { silent: true }
+You can read about the configuration options here:
+https://github.com/siddharthkp/bundlesize#configuration
+    `
     )
   } else {
     // add to the list of files to check at the 1st position
@@ -68,12 +68,12 @@ if (result) {
 
 if (!configFromFile && !configFromCli) {
   error(
-    `Config not found.
+    `
+Config not found.
 
-    You can read about the configuration options here:
-    https://github.com/siddharthkp/bundlesize#configuration
-  `,
-    { silent: true }
+You can read about the configuration options here:
+https://github.com/siddharthkp/bundlesize#configuration
+  `
   )
 }
 

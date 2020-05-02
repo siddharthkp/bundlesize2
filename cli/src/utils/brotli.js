@@ -1,7 +1,7 @@
-const { error } = require('prettycli')
 const zlib = require('zlib')
 
 const config = require('../pipeline/config')
+const error = require('./error')
 
 function getBrotliSync() {
   // Does this project want brotli compression?

@@ -1,9 +1,9 @@
 const fs = require('fs')
 const glob = require('glob')
-const { error } = require('prettycli')
 
 const config = require('./config')
 const debug = require('../utils/debug')
+const error = require('../utils/error')
 const compressedSize = require('../utils/compressed-size')
 
 config.files.map(row => {
@@ -18,9 +18,7 @@ config.files.map(row => {
   })
 
   if (!row.filesMatched.length) {
-    error(`There is no matching file for ${row.path} in ${process.cwd()}`, {
-      silent: true,
-    })
+    error(`There is no matching file for ${row.path} in ${process.cwd()}`, {})
   }
 })
 
