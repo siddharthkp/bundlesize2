@@ -14,12 +14,14 @@ const summarize = (results, cachedResults = [], options = {}) => {
   const maxFileLength = getMaxFileLength(files)
 
   let details = ``
+  let failedRows = []
+
   files.forEach(function (row) {
     details += getBlockHeader(row, colors)
 
     row.filesMatched.forEach(function (file) {
       const cachedFile = cachedResults.find(cached => cached.path === file.path)
-      details += getRow({
+      const detailRow = getRow({
         file,
         cachedFile,
         row,
@@ -27,12 +29,18 @@ const summarize = (results, cachedResults = [], options = {}) => {
         baseBranch,
         colors,
       })
+      details += detailRow
+
+      if (!file.pass) {
+        failedRows.push({ file, cachedFile, baseBranch, row })
+      }
     })
   })
 
   const summary = getSummary(results.counter, colors)
+  const title = getTitle(results.counter, summary, failedRows, colors)
 
-  return { status, details, summary }
+  return { status, details, summary, title }
 }
 
 module.exports = summarize
@@ -73,13 +81,34 @@ function getRow({ file, cachedFile, row, maxFileLength, baseBranch, colors }) {
 }
 
 function getSummary({ pass, fail }, colors) {
-  let line = ''
+  let line = ``
 
   if (pass) line += colors.pass(' ', pass, plur('check', pass), 'passed')
   if (pass && fail) line += colors.subtle(',')
   if (fail) line += colors.fail(' ', fail, plur('check', fail), 'failed')
 
   return line
+}
+
+function getTitle(counter, summary, failedRows, colors) {
+  if (counter.fail !== 1) {
+    return summary
+  } else {
+    const { file, cachedFile, row, baseBranch } = failedRows[0]
+
+    const diff = getDiffFromCache(file, cachedFile, baseBranch, colors)
+
+    return [
+      file.path,
+      '  ',
+      bytes(file.size),
+      '>',
+      row.maxSize,
+      colors.subtle(row.compression || 'gzip'),
+      diff ? '  ' + diff : null,
+      '\n',
+    ].join(' ')
+  }
 }
 
 function getSymbol(file, colors) {
