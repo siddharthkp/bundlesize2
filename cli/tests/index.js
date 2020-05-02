@@ -9,7 +9,7 @@ function run(fixture, customParams = '') {
   try {
     output = cmd(`${bundlesize} ${customParams}`, {
       cwd: `tests/fixtures/${fixture}`,
-      env: { INTERNAL_SKIP_CACHE: true, INTERNAL_SKIP_CHECK: true },
+      env: { INTERNAL_SKIP_CACHE: true },
     })
   } catch (error) {
     output = error

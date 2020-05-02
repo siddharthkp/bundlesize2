@@ -2,6 +2,7 @@
 
 const { ci, branch, platform } = require('ci-env')
 
+const { flags } = require('./src/pipeline/config')
 const files = require('./src/pipeline/files')
 const analyse = require('./src/pipeline/analyse')
 const cache = require('./src/pipeline/cache')
@@ -22,7 +23,7 @@ const run = async () => {
   const summary = summarize(results, cachedResults)
   cli.report(summary)
 
-  if (ci && platform === 'github' && !process.env.INTERNAL_SKIP_CHECK) {
+  if (ci && flags.enableGitHubChecks) {
     const summaryWithoutColors = summarize(results, cachedResults, {
       colors: false,
     })

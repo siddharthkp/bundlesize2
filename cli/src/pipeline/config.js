@@ -2,23 +2,24 @@ const cosmiconfig = require('cosmiconfig')
 const { error } = require('prettycli')
 const program = require('commander')
 const fs = require('fs')
-
 const debug = require('../utils/debug')
 
 // default places we check
 const configPaths = ['package.json', 'bundlesize.config.json']
 
 /* Config + Flags from CLI */
-// TODO: Deprecate the config part
-
 program
-  .option('-f, --files [files]', 'files to test against (dist/*.js)')
-  .option('-s, --max-size [maxSize]', 'maximum size threshold (3Kb)')
-  .option('--debug', 'run in debug mode')
   .option('--config [config]', 'Get path of configuration file')
+  .option('--debug', 'run in debug mode')
+  .option(
+    '--enable-github-checks',
+    'Enable checks on GitHub (needs installation)'
+  )
+  .option('-f, --files [files]', '(legacy) files to test against (dist/*.js)')
+  .option('-s, --max-size [maxSize]', '(legacy) maximum size threshold (3Kb)')
   .option(
     '-c, --compression [compression]',
-    'specify which compression algorithm to use'
+    '(legacy) specify which compression algorithm to use'
   )
   .parse(process.argv)
 
@@ -82,4 +83,9 @@ debug('cli config', configFromCli)
 debug('file config', configFromFile)
 debug('selected config', files)
 
-module.exports = { files }
+const flags = {
+  debug: program.debug,
+  enableGitHubChecks: program.enableGithubChecks,
+}
+
+module.exports = { files, flags }
