@@ -1,6 +1,6 @@
 - [x] make checks opt in
+- [x] improve title message if there's only one file
 - [ ] pass ci build if failed check was added
-- [ ] improve title message based on file
 - [ ] allow customisation of base branch
 - [ ] rewrite readme
 - [ ] match fuzzy rules from cache
