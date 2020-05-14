@@ -10,7 +10,7 @@
 
 Jump to:
 
-- [Migration from bundlesize@0.18.0](#migration)
+- [Migration from bundlesize@0.18.0](#migration-from-bundlesize0180)
 - [Setup](#setup)
 - [Usage](#usage)
 - [Configuration](#configuration)
