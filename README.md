@@ -8,6 +8,17 @@
 
 &nbsp;
 
+Jump to:
+
+- [Migration from bundlesize@0.18.0](#migration)
+- [Setup](#setup)
+- [Usage](#usage)
+- [Configuration](#configuration)
+- [Build status and Checks for GitHub](#build-status-and-checks-for-github)
+
+
+&nbsp;
+
 #### Setup
 
 ```sh
@@ -173,6 +184,17 @@ Using a different CI? You will need to supply an additional 5 environment variab
 - `CI_COMMIT_MESSAGE` the commit message
 - `CI_COMMIT_SHA` the SHA of the CI commit, in [Jenkins](https://jenkins.io/) you would use `${env.GIT_COMMIT}`
 - `CI=true` usually set automtically in CI enviroments
+
+&nbsp;
+
+#### Migration from bundlesize@0.18.0
+
+1. Use the npm package `bundlesize2` instead of `bundlesize`
+2. If you'd like status reported back to github, use the flag `--enable-github-checks` + authorize bundlesize2 app. [More in the docs](https://github.com/siddharthkp/bundlesize2#build-status-and-checks-for-github)
+3. Remove `BUNDLESIZE_GITHUB_TOKEN`, it's not required anymore
+4. If anything breaks, let me know :)
+
+Note: This is only until the new version is ready and then it will be merged back in this project as a major release
 
 &nbsp;
 
