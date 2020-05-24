@@ -4,3 +4,4 @@
 - [ ] allow customisation of base branch
 - [ ] rewrite readme
 - [ ] match fuzzy rules from cache
+- [ ] make it work with GitHub actions
