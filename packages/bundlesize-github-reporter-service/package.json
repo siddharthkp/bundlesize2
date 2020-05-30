@@ -1,5 +1,5 @@
 {
-  "name": "bundlesize-github-reporter",
+  "name": "bundlesize-github-reporter-service",
   "private": true,
   "version": "0.0.0",
   "scripts": {
