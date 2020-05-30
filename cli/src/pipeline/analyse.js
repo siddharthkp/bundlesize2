@@ -8,8 +8,8 @@ const bytes = require('bytes')
 function analyse(config) {
   const counter = { pass: 0, fail: 0 }
 
-  const files = config.files.map(function(row) {
-    row.filesMatched.map(function(file) {
+  const files = config.files.map(row => {
+    row.filesMatched.map(file => {
       const parsedFileSize = bytes.parse(file.size)
       const parsedMaxSize = bytes.parse(row.maxSize)
 
@@ -24,8 +24,11 @@ function analyse(config) {
         file.operator = '='
       }
 
-      if (file.pass) counter.pass++
-      else counter.fail++
+      if (file.pass) {
+        counter.pass++
+      } else {
+        counter.fail++
+      }
     })
     return row
   })

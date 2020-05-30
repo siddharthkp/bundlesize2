@@ -45,7 +45,9 @@ function getMaxFileLength(files) {
 
   files.forEach(function (row) {
     row.filesMatched.forEach(function (file) {
-      if (file.path.length > maxFileLength) maxFileLength = file.path.length
+      if (file.path.length > maxFileLength) {
+        maxFileLength = file.path.length
+      }
     })
   })
 
@@ -78,9 +80,15 @@ function getRow({ file, cachedFile, row, maxFileLength, baseBranch, colors }) {
 function getSummary({ pass, fail }, colors) {
   let line = ``
 
-  if (pass) line += colors.pass(' ', pass, plur('check', pass), 'passed')
-  if (pass && fail) line += colors.subtle(',')
-  if (fail) line += colors.fail(' ', fail, plur('check', fail), 'failed')
+  if (pass) {
+    line += colors.pass(' ', pass, plur('check', pass), 'passed')
+  }
+  if (pass && fail) {
+    line += colors.subtle(',')
+  }
+  if (fail) {
+    line += colors.fail(' ', fail, plur('check', fail), 'failed')
+  }
 
   return line
 }
@@ -103,7 +111,8 @@ function getTitle(counter, details, summary) {
       .replace(figures.tick, '')
       .trimStart()
     return row
-  } else return summary
+  }
+  return summary
 }
 
 function getSymbol(file, colors) {

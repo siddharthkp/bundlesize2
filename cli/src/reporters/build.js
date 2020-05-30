@@ -15,8 +15,11 @@ function error(err) {
 }
 
 function report(summary) {
-  if (summary.status === 'fail') fail()
-  else pass()
+  if (summary.status === 'fail') {
+    fail()
+  } else {
+    pass()
+  }
 }
 
 module.exports = { report, error }
