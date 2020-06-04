@@ -51,7 +51,7 @@ module.exports = async (req, res) => {
       message: `
         Something broke pretty bad!
 
-        Please create an issue at https://github.com/siddharthkp/bundlesize/issues/new with this error message: ${error}
+        Please create an issue at https://github.com/siddharthkp/bundlesize2/issues/new with this error message: ${error}
     `,
     })
   }
