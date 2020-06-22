@@ -15,10 +15,10 @@ const summarize = (results, cachedResults = [], options = {}) => {
 
   let details = ``
 
-  files.forEach(function (row) {
+  files.forEach(row => {
     details += getBlockHeader(row, colors)
 
-    row.filesMatched.forEach(function (file) {
+    row.filesMatched.forEach(file => {
       const cachedFile = cachedResults.find(cached => cached.path === file.path)
       const detailRow = getRow({
         file,
@@ -43,9 +43,11 @@ module.exports = summarize
 function getMaxFileLength(files) {
   let maxFileLength = 0
 
-  files.forEach(function (row) {
-    row.filesMatched.forEach(function (file) {
-      if (file.path.length > maxFileLength) maxFileLength = file.path.length
+  files.forEach(row => {
+    row.filesMatched.forEach(file => {
+      if (file.path.length > maxFileLength) {
+        maxFileLength = file.path.length
+      }
     })
   })
 

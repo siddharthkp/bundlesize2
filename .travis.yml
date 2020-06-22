@@ -8,4 +8,6 @@ cache:
     - node_modules
 notifications:
   email: false
-script: cd cli && yarn && npm test
+script:
+  - yarn
+  - yarn workspace bundlesize2 test
