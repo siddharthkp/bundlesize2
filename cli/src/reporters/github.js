@@ -5,13 +5,13 @@ let API = 'https://bundlesize-github-reporter.now.sh'
 // if (ci === 'custom') API = 'http://localhost:3000'
 
 async function report(summary) {
-  const body = {
-    repo,
-    sha,
-    status: summary.status,
-    title: summary.title,
-    text: summary.details,
-  }
+  const { status, title, details } = summary
+  const text =
+    details > 60000
+      ? details.substring(0, 60000) + '… (message truncated)'
+      : details
+
+  const body = { repo, sha, status, title, text }
 
   await fetch(API, {
     method: 'post',
