@@ -64,7 +64,7 @@ function getRow({ file, cachedFile, row, maxFileLength, baseBranch, colors }) {
   return [
     ' ',
     symbol,
-    rightpad(file.path, maxFileLength),
+    rightpad(file.path, Math.min(maxFileLength, 100)),
     '  ',
     bytes(file.size),
     operator,
