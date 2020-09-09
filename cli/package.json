@@ -23,7 +23,7 @@
     "right-pad": "^1.0.1"
   },
   "devDependencies": {
-    "ava": "^3.7.1",
+    "ava": "^3.12.1",
     "execa": "^4.0.0"
   }
 }
