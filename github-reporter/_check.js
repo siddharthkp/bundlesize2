@@ -72,11 +72,11 @@ const run = async ({
     text
       .replace(
         /✔/g,
-        '<img src="https://raw.githubusercontent.com/siddharthkp/bundlesize2/master/github-reporter/public/check-pass.svg"></img>'
+        '<img src="https://raw.githubusercontent.com/siddharthkp/bundlesize2/main/github-reporter/public/check-pass.svg"></img>'
       )
       .replace(
         /✖/g,
-        '<img src="https://raw.githubusercontent.com/siddharthkp/bundlesize2/master/github-reporter/public/check-fail.svg"></img>'
+        '<img src="https://raw.githubusercontent.com/siddharthkp/bundlesize2/main/github-reporter/public/check-fail.svg"></img>'
       ) +
     '</pre>'
 
