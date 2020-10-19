@@ -7,8 +7,8 @@ let API = 'https://bundlesize-github-reporter.now.sh'
 async function report(summary) {
   const { status, title, details } = summary
   const text =
-    details > 60000
-      ? details.substring(0, 60000) + '… (message truncated)'
+    details > 50000
+      ? details.substring(0, 50000) + '… (message truncated)'
       : details
 
   const body = { repo, sha, status, title, text }
