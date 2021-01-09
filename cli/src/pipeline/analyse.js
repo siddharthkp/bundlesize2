@@ -11,7 +11,7 @@ function analyse(config) {
   const files = config.files.map(function(row) {
     row.filesMatched.map(function(file) {
       const parsedFileSize = bytes.parse(file.size)
-      const parsedMaxSize = bytes.parse(row.maxSize)
+      const parsedMaxSize = bytes.parse(row.maxSize) || Number.MAX_VALUE
 
       if (parsedFileSize > parsedMaxSize) {
         file.pass = false
