@@ -6,7 +6,7 @@
     },
     {
       "path": "build/**/chunk-*.js",
-      "maxSize": "300B"
+      "maxSize": "100B"
     },
     {
       "path": "build/**/chunk-*.js",
