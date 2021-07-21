@@ -79,8 +79,8 @@ https://github.com/siddharthkp/bundlesize#configuration
 
 const files = configFromCli || configFromFile
 
-debug('cli config', configFromCli)
-debug('file config', configFromFile)
+debug('config from cli params', configFromCli)
+debug('config from bundlesize.config', configFromFile)
 debug('selected config', files)
 
 const flags = {
