@@ -110,3 +110,9 @@ test.skip('11. bug repro: bundlesize should dedup files', t => {
   t.is(exitCode, 0) // this is failing
   t.snapshot(stdout)
 })
+
+test.skip('12. deduped files with the same specificty should pick the latter one', t => {
+  const { stdout, exitCode } = run(12)
+  t.is(exitCode, 0)
+  t.snapshot(stdout)
+})
