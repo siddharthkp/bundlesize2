@@ -58,18 +58,15 @@ function getBlockHeader(row, colors) {
 
 function getRow({ file, cachedFile, row, maxFileLength, baseBranch, colors }) {
   const symbol = getSymbol(file, colors)
-  const operator = getOperator(file, colors)
   const diff = getDiffFromCache(file, cachedFile, baseBranch, colors)
+  const sizeInfo = getSizeInfo(file, row, colors)
 
   return [
     ' ',
     symbol,
     rightpad(file.path, Math.min(maxFileLength, 100)),
     '  ',
-    bytes(file.size),
-    operator,
-    row.maxSize,
-    colors.subtle(row.compression || 'gzip'),
+    sizeInfo,
     diff ? '  ' + diff : null,
     '\n',
   ].join(' ')
@@ -107,7 +104,9 @@ function getTitle(counter, details, summary) {
 }
 
 function getSymbol(file, colors) {
-  return file.pass ? colors.pass(figures.tick) : colors.fail(figures.cross)
+  if (file.pass) return colors.pass(figures.tick)
+  else if (file.skip) return colors.subtle(figures.line)
+  else return colors.fail(figures.cross)
 }
 
 function getOperator(file, colors) {
@@ -118,6 +117,20 @@ function getOperator(file, colors) {
   }
 
   return map[file.operator]
+}
+
+function getSizeInfo(file, row, colors) {
+  if (file.duplicate) return colors.subtle('deduplicated')
+
+  const operator = getOperator(file, colors)
+  const compression = row.compression || 'gzip'
+
+  return [
+    bytes(file.size),
+    operator,
+    row.maxSize,
+    colors.subtle(compression),
+  ].join(' ')
 }
 
 function getDiffFromCache(file, cachedFile, baseBranch, colors) {
