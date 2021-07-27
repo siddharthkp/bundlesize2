@@ -4,4 +4,4 @@
 - [ ] allow customisation of base branch, make main and master default
 - [ ] rewrite readme
 - [ ] match fuzzy rules from cache
-- [ ] comparision with master [#22](https://github.com/siddharthkp/bundlesize2/issues/22)
+- [ ] add cumulative diff with master in title [#22](https://github.com/siddharthkp/bundlesize2/issues/22)
