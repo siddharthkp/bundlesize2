@@ -123,7 +123,8 @@ function getSizeInfo(file, row, colors) {
   if (file.duplicate) return colors.subtle('deduplicated')
 
   const operator = getOperator(file, colors)
-  const compression = row.compression || 'gzip'
+  let compression = row.compression || 'gzip'
+  if (compression === 'none') compression = 'no compression'
 
   return [
     bytes(file.size),
