@@ -194,7 +194,7 @@ Using a different CI? You will need to supply an additional 5 environment variab
 3. Remove `BUNDLESIZE_GITHUB_TOKEN`, it's not required anymore
 4. If anything breaks, let me know :)
 
-Note: This is only until the new version is ready and then it will be merged back in this project as a major release
+Note: When this package is feature complete, it will be merged back into the original project as bundlesize@2.0.0
 
 &nbsp;
 
