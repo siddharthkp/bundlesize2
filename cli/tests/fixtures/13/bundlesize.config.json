@@ -1,0 +1,14 @@
+{
+  "files": [
+    {
+      "path": "build/**/chunk-*.js",
+      "maxSize": "275B",
+      "compression": "gzip"
+    },
+    {
+      "path": "build/**/chunk-*.js",
+      "maxSize": "500B",
+      "compression": "none"
+    }
+  ]
+}

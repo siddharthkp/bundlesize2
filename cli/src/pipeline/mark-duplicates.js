@@ -24,7 +24,7 @@ const markDuplicates = config => {
       config.files.forEach((ruleB, indexB) => {
         if (indexB <= indexA) return // only for next rules
         ruleB.filesMatched.forEach(fileB => {
-          if (fileA.path === fileB.path) fileB.duplicate = true
+          if (fileA.path === fileB.path && ruleA.compression === ruleB.compression) fileB.duplicate = true
         })
       })
     })

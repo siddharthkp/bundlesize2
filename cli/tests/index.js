@@ -95,3 +95,12 @@ test.serial(
     t.snapshot(stdout)
   }
 )
+
+test.serial(
+  '13. dont dedup files with same path but different compression',
+  t => {
+    const { stdout, exitCode } = run(13)
+    t.is(exitCode, 0)
+    t.snapshot(stdout)
+  }
+)
