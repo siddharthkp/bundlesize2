@@ -14,6 +14,7 @@ const summarize = (results, cachedResults = [], options = {}) => {
   const maxFileLength = getMaxFileLength(files)
 
   let details = ``
+  let totalDiff = 0
 
   files.forEach(function (row) {
     details += getBlockHeader(row, colors)
@@ -29,10 +30,12 @@ const summarize = (results, cachedResults = [], options = {}) => {
         colors,
       })
       details += detailRow
+
+      if (cachedFile) totalDiff += file.size - cachedFile.size
     })
   })
 
-  const summary = getSummary(results.counter, colors)
+  const summary = getSummary(results.counter, colors, totalDiff, baseBranch, maxFileLength)
   const title = getTitle(results.counter, details, summary)
 
   return { status, details, summary, title }
@@ -72,19 +75,27 @@ function getRow({ file, cachedFile, row, maxFileLength, baseBranch, colors }) {
   ].join(' ')
 }
 
-function getSummary({ pass, fail }, colors) {
+function getSummary({ pass, fail }, colors, totalDiff, baseBranch, maxFileLength) {
   let line = ``
 
   if (pass) line += colors.pass(' ', pass, plur('check', pass), 'passed')
   if (pass && fail) line += colors.subtle(',')
   if (fail) line += colors.fail(' ', fail, plur('check', fail), 'failed')
 
-  return line
+  let diffMessage = ``
+  if (totalDiff === 0) diffMessage = `same as ${baseBranch}`
+  else if (totalDiff > 0) diffMessage = `${bytes(totalDiff)} larger than ${baseBranch}`
+  else diffMessage = `${bytes(-totalDiff)} smaller than ${baseBranch}`
+
+  // align with previous row
+  const lengthOfFirstColumn = Math.min(maxFileLength + 8, 100)
+  return rightpad(line, lengthOfFirstColumn) + diffMessage
 }
 
 function getTitle(counter, details, summary) {
   // loooool, this is such a hack
-  // we read the details string and pick the row out of it
+  // if there's just one row, we want to show the filename
+  // so we read the details string and pick the row out of it
 
   if (counter.fail === 1) {
     const row = details
