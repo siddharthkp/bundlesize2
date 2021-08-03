@@ -14,7 +14,6 @@ const summarize = (results, cachedResults = [], options = {}) => {
   const maxFileLength = getMaxFileLength(files)
 
   let details = ``
-  let totalDiff = 0
 
   files.forEach(function (row) {
     details += getBlockHeader(row, colors)
@@ -30,12 +29,11 @@ const summarize = (results, cachedResults = [], options = {}) => {
         colors,
       })
       details += detailRow
-
-      if (cachedFile) totalDiff += file.size - cachedFile.size
     })
   })
 
-  const summary = getSummary(results.counter, colors, totalDiff, baseBranch, maxFileLength)
+  const cacheSummary = getCacheSummary(results, cachedResults, baseBranch)
+  const summary = getSummary(results.counter, colors, cacheSummary)
   const title = getTitle(results.counter, details, summary)
 
   return { status, details, summary, title }
@@ -75,21 +73,34 @@ function getRow({ file, cachedFile, row, maxFileLength, baseBranch, colors }) {
   ].join(' ')
 }
 
-function getSummary({ pass, fail }, colors, totalDiff, baseBranch, maxFileLength) {
+function getSummary({ pass, fail }, colors, cacheSummary) {
   let line = ``
 
   if (pass) line += colors.pass(' ', pass, plur('check', pass), 'passed')
   if (pass && fail) line += colors.subtle(',')
   if (fail) line += colors.fail(' ', fail, plur('check', fail), 'failed')
 
-  let diffMessage = ``
-  if (totalDiff === 0) diffMessage = `same as ${baseBranch}`
-  else if (totalDiff > 0) diffMessage = `${bytes(totalDiff)} larger than ${baseBranch}`
-  else diffMessage = `${bytes(-totalDiff)} smaller than ${baseBranch}`
+  return line + '   ' + cacheSummary
+}
 
-  // align with previous row
-  const lengthOfFirstColumn = Math.min(maxFileLength + 8, 100)
-  return rightpad(line, lengthOfFirstColumn) + diffMessage
+function getCacheSummary(results, cachedResults, baseBranch) {
+  if (!cachedResults.length) return ''
+
+  let totalDiff = 0
+
+  results.files.forEach(function (row) {
+    row.filesMatched.forEach(function (file) {
+      const cachedFile = cachedResults.find(cached => cached.path === file.path)
+      if (cachedFile) totalDiff += file.size - cachedFile.size
+    })
+  })
+
+  let message = ``
+  if (totalDiff === 0) message = `same as ${baseBranch}`
+  else if (totalDiff > 0) message = `${bytes(totalDiff)} larger than ${baseBranch}`
+  else message = `${bytes(-totalDiff)} smaller than ${baseBranch}`
+
+  return message
 }
 
 function getTitle(counter, details, summary) {
