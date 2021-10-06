@@ -2,6 +2,7 @@
   "name": "bundlesize2",
   "version": "0.0.30",
   "description": "Keep your bundle size in check",
+  "license": "MIT",
   "main": "index.js",
   "bin": {
     "bundlesize": "index.js"
