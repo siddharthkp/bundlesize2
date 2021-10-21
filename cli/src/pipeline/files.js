@@ -13,7 +13,7 @@ config.files.map(row => {
 
   files.map(path => {
     const compression = row.compression || 'gzip'
-    const size = compressedSize(fs.readFileSync(path, 'utf8'), compression)
+    const size = compressedSize(fs.readFileSync(path), compression)
     row.filesMatched.push({ path, size })
   })
 

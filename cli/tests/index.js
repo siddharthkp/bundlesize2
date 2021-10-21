@@ -104,3 +104,21 @@ test.serial(
     t.snapshot(stdout)
   }
 )
+
+test.serial(
+  '14. pass: precompressed Brotli files should report the correct size',
+  t => {
+    const { stdout, exitCode } = run(14)
+    t.is(exitCode, 0)
+    t.snapshot(stdout)
+  }
+)
+
+test.serial(
+  '15. pass: precompressed Gzip files should report the correct size',
+  t => {
+    const { stdout, exitCode } = run(15)
+    t.is(exitCode, 0)
+    t.snapshot(stdout)
+  }
+)
