@@ -1,0 +1,9 @@
+{
+  "files": [
+    {
+      "path": "file-15.js.gz",
+      "maxSize": "300B",
+      "compression": "none"
+    }
+  ]
+}
