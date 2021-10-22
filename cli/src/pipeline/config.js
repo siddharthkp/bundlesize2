@@ -15,6 +15,10 @@ program
     '--enable-github-checks',
     'Enable checks on GitHub (needs installation)'
   )
+  .option(
+    '--base-branch',
+    'Specify which branch to use as a baseline for comparison'
+  )
   .option('-f, --files [files]', '(legacy) files to test against (dist/*.js)')
   .option('-s, --max-size [maxSize]', '(legacy) maximum size threshold (3Kb)')
   .option(
@@ -86,6 +90,7 @@ debug('selected config', files)
 const flags = {
   debug: program.debug,
   enableGitHubChecks: program.enableGithubChecks,
+  baseBranch: program.baseBranch,
 }
 
 module.exports = { files, flags }

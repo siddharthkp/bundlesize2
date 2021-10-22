@@ -13,10 +13,16 @@ const github = require('./src/reporters/github')
 const build = require('./src/reporters/build')
 const summarize = require('./src/utils/summarize')
 
+/**
+ * Default branches to cache against when running through CI.
+ */
+const defaultBaseBranches = ['main', 'master'];
+
 const run = async () => {
   const results = analyse(markDuplicates(files))
+  const onBaseBranch = branch === flags.baseBranch || defaultBaseBranches.includes(branch)
 
-  if (ci && branch === 'master' && !process.env.INTERNAL_SKIP_CACHE) {
+  if (ci && onBaseBranch && !process.env.INTERNAL_SKIP_CACHE) {
     await cache.save(results)
   }
   const cachedResults = await cache.read()
