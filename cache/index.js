@@ -1,8 +1,9 @@
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0
-
 var knex = require('knex')({
   client: 'pg',
-  connection: process.env.PG_CONNECTION_STRING,
+  connection: {
+    connectionString: process.env.PG_CONNECTION_STRING,
+    ssl: { rejectUnauthorized: false },
+  },
 })
 
 async function testConnection() {
