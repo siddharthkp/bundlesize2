@@ -158,29 +158,19 @@ test.serial(
     t.snapshot(stdout)
   }
 )
-
 test.serial(
-  '20. fail: no matching files',
+  '20. pass: duplicate file sum, different compressions, no dedupe',
   t => {
     const { stdout, exitCode } = run(20)
-    t.is(exitCode, 1)
-    t.snapshot(stdout)
-  }
-)
-
-test.serial(
-  '21. pass: duplicate file sum, different compressions, no dedupe',
-  t => {
-    const { stdout, exitCode } = run(21)
     t.is(exitCode, 0)
     t.snapshot(stdout)
   }
 )
 
 test.serial(
-  '22. pass: sum of a single file should still be same as if it was not a sum',
+  '21. pass: sum of a single file should still be same as if it was not a sum',
   t => {
-    const { stdout, exitCode } = run(22)
+    const { stdout, exitCode } = run(21)
     t.is(exitCode, 0)
     t.snapshot(stdout)
   }
