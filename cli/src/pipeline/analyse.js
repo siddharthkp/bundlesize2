@@ -9,6 +9,13 @@ function analyse(config) {
   const counter = { pass: 0, fail: 0 }
 
   const files = config.files.map(function (row) {
+    const doSum = !!row.sum;
+    if(doSum) {
+      const rowSum = row.filesMatched.reduce(function (sum, file) {
+        return sum + (file.duplicate ? 0 : file.size);
+      }, 0);
+      row.filesMatched = [{path: row.path, ...(rowSum > 0 ? {size: rowSum} : {duplicate: true})}];
+    }
     row.filesMatched.map(function (file) {
       const parsedFileSize = bytes.parse(file.size)
       const parsedMaxSize = bytes.parse(row.maxSize)

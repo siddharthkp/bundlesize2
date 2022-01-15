@@ -1,0 +1,9 @@
+{
+  "files": [
+    {
+      "path": "file-1.js",
+      "maxSize": "300B",
+      "sum": true
+    }
+  ]
+}

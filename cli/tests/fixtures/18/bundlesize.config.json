@@ -1,0 +1,13 @@
+{
+  "files": [
+    {
+      "path": "build/**/*.js",
+      "maxSize": "500B",
+      "sum": true
+    },
+    {
+      "path": "build/chunks/*.js",
+      "maxSize": "500B"
+    }
+  ]
+}

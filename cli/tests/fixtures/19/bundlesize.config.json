@@ -1,0 +1,14 @@
+{
+  "files": [
+    {
+      "path": "build/**/*.js",
+      "maxSize": "750B",
+      "sum": true
+    },
+    {
+      "path": "build/**/*.js",
+      "maxSize": "750B",
+      "sum": true
+    }
+  ]
+}

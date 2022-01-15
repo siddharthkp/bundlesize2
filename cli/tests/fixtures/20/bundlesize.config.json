@@ -1,0 +1,12 @@
+{
+  "files": [
+    {
+      "path": "build/chunks/*.js",
+      "maxSize": "0B"
+    },
+    {
+      "path": "build/vendor-ha5h.js",
+      "maxSize": "200B"
+    }
+  ]
+}

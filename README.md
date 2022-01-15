@@ -16,7 +16,6 @@ Jump to:
 - [Configuration](#configuration)
 - [Build status and Checks for GitHub](#build-status-and-checks-for-github)
 
-
 &nbsp;
 
 #### Setup
@@ -76,7 +75,7 @@ Format:
 
 The file is expected to be at the project root. But, you can give a different path by using the `--config` flag:
 
-```
+```sh
 bundlesize --config configs/bundlesize.json
 ```
 
@@ -124,7 +123,7 @@ Notice that the key here is `bundlesize` instead of `files`.
    }
    ```
 
-   It will match multiple files if necessary and create a new row for each file.
+   It will match multiple files if necessary and create a new row for each file. The program will throw and error if and exit with error code if no files are matched.
 
    &nbsp;
 
@@ -160,7 +159,29 @@ Notice that the key here is `bundlesize` instead of `files`.
    }
    ```
 
-&nbsp;
+  &nbsp;
+
+3. Summation
+
+   By default, bundlesize will only compare individual file sizes, even if you specify a glob pattern match.
+
+   If you want the `maxSize` comparison to be against the sum of all matched files, you can use the `sum` option:
+
+   ```json
+   {
+     "files": [
+       {
+         "path": "build/**/*.chunk.js",
+         "maxSize": "50 kB",
+         "sum": true
+       }
+     ]
+   }
+   ```
+
+   This sum simply adds the sizes of all matching files (with their compression values already applied) and uses that as the size to compare `maxSize` to. This sum happens after compression, so it will give you different results than if you did the sum first (due to order of operations of sum/compression giving different values). Summing a single matched file will output as if it were a single file/not a sum. Deduplication and specificity rules still hold true even for sums.
+
+   &nbsp;
 
 #### Build status and Checks for GitHub
 
@@ -183,7 +204,7 @@ Using a different CI? You will need to supply an additional 5 environment variab
 - `CI_REPO_NAME` given the repo `https://github.com/myusername/myrepo` would be `myrepo`
 - `CI_COMMIT_MESSAGE` the commit message
 - `CI_COMMIT_SHA` the SHA of the CI commit, in [Jenkins](https://jenkins.io/) you would use `${env.GIT_COMMIT}`
-- `CI=true` usually set automtically in CI enviroments
+- `CI=true` usually set automatically in CI environments
 
 &nbsp;
 

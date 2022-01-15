@@ -122,3 +122,66 @@ test.serial(
     t.snapshot(stdout)
   }
 )
+
+test.serial(
+  '16. pass: sum should be correct for multiple files',
+  t => {
+    const { stdout, exitCode } = run(16)
+    t.is(exitCode, 0)
+    t.snapshot(stdout)
+  }
+)
+
+test.serial(
+  '17. fail: sum multiple files, bigger than limit',
+  t => {
+    const { stdout, exitCode } = run(17)
+    t.is(exitCode, 1)
+    t.snapshot(stdout)
+  }
+)
+
+test.serial(
+  '18. pass: single file sum because greater specificity of other config',
+  t => {
+    const { stdout, exitCode } = run(18)
+    t.is(exitCode, 0)
+    t.snapshot(stdout)
+  }
+)
+
+test.serial(
+  '19. pass: duplicate file sum, should dedupe',
+  t => {
+    const { stdout, exitCode } = run(19)
+    t.is(exitCode, 0)
+    t.snapshot(stdout)
+  }
+)
+
+test.serial(
+  '20. fail: no matching files',
+  t => {
+    const { stdout, exitCode } = run(20)
+    t.is(exitCode, 1)
+    t.snapshot(stdout)
+  }
+)
+
+test.serial(
+  '21. pass: duplicate file sum, different compressions, no dedupe',
+  t => {
+    const { stdout, exitCode } = run(21)
+    t.is(exitCode, 0)
+    t.snapshot(stdout)
+  }
+)
+
+test.serial(
+  '22. pass: sum of a single file should still be same as if it was not a sum',
+  t => {
+    const { stdout, exitCode } = run(22)
+    t.is(exitCode, 0)
+    t.snapshot(stdout)
+  }
+)
