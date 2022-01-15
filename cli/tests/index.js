@@ -175,3 +175,21 @@ test.serial(
     t.snapshot(stdout)
   }
 )
+
+test.serial(
+  '22. pass: empty file matching should not throw an error',
+  t => {
+    const { stdout, exitCode } = run(22)
+    t.is(exitCode, 0)
+    t.snapshot(stdout)
+  }
+)
+
+test.serial(
+  '23. pass: summing multiple empty files that match a pattern should not throw an error',
+  t => {
+    const { stdout, exitCode } = run(23)
+    t.is(exitCode, 0)
+    t.snapshot(stdout)
+  }
+)

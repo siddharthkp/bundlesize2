@@ -1,0 +1,9 @@
+{
+  "files": [
+    {
+      "path": "file-1.js",
+      "maxSize": "0B",
+      "compression": "none"
+    }
+  ]
+}

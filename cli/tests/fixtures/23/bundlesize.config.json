@@ -1,0 +1,10 @@
+{
+  "files": [
+    {
+      "path": "*.js",
+      "maxSize": "437B",
+      "sum": true,
+      "compression": "none"
+    }
+  ]
+}
