@@ -19,7 +19,7 @@
     "figures": "^3.2.0",
     "glob": "^7.1.6",
     "gzip-size": "^5.1.1",
-    "node-fetch": "^2.6.7",
+    "node-fetch": "^3.1.1",
     "plur": "^4.0.0",
     "right-pad": "^1.0.1"
   },
