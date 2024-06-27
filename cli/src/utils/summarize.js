@@ -1,4 +1,3 @@
-const rightpad = require('right-pad')
 const figures = require('figures')
 const bytes = require('bytes')
 const plur = require('plur')
@@ -65,7 +64,7 @@ function getRow({ file, cachedFile, row, maxFileLength, baseBranch, colors }) {
   return [
     ' ',
     symbol,
-    rightpad(file.path, Math.min(maxFileLength, 100)),
+    file.path.padEnd(Math.min(maxFileLength, 100)),
     '  ',
     sizeInfo,
     diff ? '  ' + diff : null,
