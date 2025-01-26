@@ -9,5 +9,7 @@ jobs:
     - uses: actions/checkout@v4
     - name: Setup Nodejs
       uses: actions/setup-node@v4
-    - run: cd cli && npm install
+      with: 
+        node-version: 22
+    - run: cd cli && npm ci
     - run: cd cli && npm test
