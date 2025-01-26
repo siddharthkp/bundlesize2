@@ -21,7 +21,7 @@ function run(fixture, customParams = '') {
   return output
 }
 
-test.serial.only('1. pass: single file smaller than limit', t => {
+test.serial('1. pass: single file smaller than limit', t => {
   const { stdout, exitCode } = run(1)
   t.is(exitCode, 0)
   t.snapshot(stdout)

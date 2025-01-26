@@ -45,7 +45,7 @@ const getFilesMatched = ({ files }) => {
 
 const cache = {
   read: async () => {
-    if (!repo) return
+    if (!repo || process.env.INTERNAL_SKIP_CACHE) return
 
     const cachedResults = await api.get({ repo })
     return cachedResults
