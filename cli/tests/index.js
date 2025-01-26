@@ -9,7 +9,15 @@ function run(fixture, customParams = '') {
   try {
     output = cmd(`${bundlesize} ${customParams}`, {
       cwd: `tests/fixtures/${fixture}`,
-      env: { INTERNAL_SKIP_CACHE: true },
+      env: {
+        INTERNAL_SKIP_CACHE: true,
+        // local dev:
+        // CI: 'LOCAL',
+        // CI_REPO_OWNER: 'test',
+        // CI_REPO_NAME: 'test',
+        // CI_COMMIT_SHA: 'test',
+        // CI_BRANCH: 'master',
+      },
     })
   } catch (error) {
     output = error
