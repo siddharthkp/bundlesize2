@@ -6,27 +6,36 @@ if (ci === 'LOCAL') API = 'http://localhost:3001'
 
 const api = {
   get: async ({ repo }) => {
-    return await fetch(API + '?repo=' + repo, {
-      method: 'get',
-      headers: { 'Content-Type': 'application/json' },
-    })
-      .then(res => res.json())
-      .then(json => {
-        if (json.filesMatched && json.filesMatched.length) {
-          return JSON.parse(json.filesMatched)
-        } else return []
+    try {
+      const results = await fetch(API + '?repo=' + repo, {
+        method: 'get',
+        headers: { 'Content-Type': 'application/json' },
       })
-      .catch(error => console.log(error))
+
+      const { filesMatched } = await results.json()
+      if (filesMatched && filesMatched.length) return JSON.parse(filesMatched)
+      else return []
+    } catch (error) {
+      console.log('--- bundlesize error ---')
+      console.log('Could not get cached values for ' + repo)
+      console.log(error)
+      console.log('--- bundlesize error ---')
+      return []
+    }
   },
   put: async ({ repo, branch, sha, filesMatched }) => {
-    return await fetch(API, {
-      method: 'put',
-      body: JSON.stringify({ repo, branch, sha, filesMatched }),
-      headers: { 'Content-Type': 'application/json' },
-    }).catch(error => {
+    try {
+      await fetch(API, {
+        method: 'put',
+        body: JSON.stringify({ repo, branch, sha, filesMatched }),
+        headers: { 'Content-Type': 'application/json' },
+      })
+    } catch (error) {
+      console.log('--- bundlesize error ---')
       console.log('Could not cache values for ' + sha)
       console.log(error)
-    })
+      console.log('--- bundlesize error ---')
+    }
   },
 }
 
@@ -53,16 +62,12 @@ const cache = {
   save: async ({ files }) => {
     const filesMatched = getFilesMatched({ files })
 
-    try {
-      await api.put({
-        repo,
-        branch,
-        sha,
-        filesMatched: JSON.stringify(filesMatched),
-      })
-    } catch (error) {
-      console.log(error)
-    }
+    await api.put({
+      repo,
+      branch,
+      sha,
+      filesMatched: JSON.stringify(filesMatched),
+    })
 
     return true
   },
