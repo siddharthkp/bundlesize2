@@ -16,7 +16,14 @@ try {
     table.string('branch')
     table.string('sha')
     table.string('filesMatched')
-    table.timestamps()
+    table
+      .timestamp('created_at')
+      .notNullable()
+      .defaultTo(instance.raw('CURRENT_TIMESTAMP'))
+    table
+      .timestamp('updated_at')
+      .notNullable()
+      .defaultTo(instance.raw('CURRENT_TIMESTAMP'))
     instance.destroy()
   })
 } catch (error) {
