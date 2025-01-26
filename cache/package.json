@@ -3,7 +3,6 @@
   "private": true,
   "version": "0.0.0",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "setup:dev": "vercel env pull && mv .env.local .env",
     "setup:database": "DEBUG=knex:* node --experimental-strip-types schema.ts",
