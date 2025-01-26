@@ -1,7 +1,8 @@
 - [x] make checks opt in
 - [x] improve title message if there's only one file
 - [ ] pass ci build if failed check was added
-- [ ] allow customisation of base branch, make main and master default
+- [x] make main and master both defaults
+- [ ] allow customisation of base branch
 - [ ] rewrite readme
 - [ ] match fuzzy rules from cache
 - [ ] add cumulative diff with master in title [#22](https://github.com/siddharthkp/bundlesize2/issues/22)

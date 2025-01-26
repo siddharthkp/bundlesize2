@@ -5,7 +5,7 @@ const { Colors, WithoutColors } = require('./colors')
 
 const summarize = (results, cachedResults = [], options = {}) => {
   const colors = options.colors === false ? WithoutColors : Colors
-  const baseBranch = options.baseBranch || 'master'
+  const baseBranch = options.baseBranch || 'main'
 
   const status = results.status
 
@@ -96,7 +96,8 @@ function getCacheSummary(results, cachedResults, baseBranch) {
 
   let message = ``
   if (totalDiff === 0) message = `same as ${baseBranch}`
-  else if (totalDiff > 0) message = `${bytes(totalDiff)} larger than ${baseBranch}`
+  else if (totalDiff > 0)
+    message = `${bytes(totalDiff)} larger than ${baseBranch}`
   else message = `${bytes(-totalDiff)} smaller than ${baseBranch}`
 
   return message

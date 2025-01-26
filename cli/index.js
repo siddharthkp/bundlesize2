@@ -18,7 +18,7 @@ const run = async () => {
 
   if (
     ci &&
-    (branch === 'master' || branch === 'main') &&
+    (branch === 'main' || branch === 'master') &&
     !process.env.INTERNAL_SKIP_CACHE
   ) {
     await cache.save(results)

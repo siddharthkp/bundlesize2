@@ -16,7 +16,7 @@ function run(fixture, customParams = '') {
         // CI_REPO_OWNER: 'test',
         // CI_REPO_NAME: 'test',
         // CI_COMMIT_SHA: 'test',
-        // CI_BRANCH: 'master',
+        // CI_BRANCH: 'main', // uncomment this line to test saving
       },
     })
   } catch (error) {
