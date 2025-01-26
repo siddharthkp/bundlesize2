@@ -2,7 +2,7 @@ const { ci, repo, branch, sha } = require('ci-env')
 const fetch = require('node-fetch')
 
 let API = 'https://bundlesize-cache.now.sh'
-// if (ci === 'custom') API = 'http://localhost:3001'
+if (ci === 'LOCAL') API = 'http://localhost:3001'
 
 const api = {
   get: async ({ repo }) => {
