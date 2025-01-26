@@ -116,3 +116,5 @@ dist
 .pnp.*
 
 .now
+.vercel
+.env*.local
