@@ -1,3 +1,5 @@
+// probably requires type:module in package.json to run
+
 import 'dotenv/config'
 import { default as knex } from 'knex'
 
