@@ -1,8 +1,6 @@
 name: Test
 
-on:
-  push:
-  pull_request:
+on: [push]
 
 jobs:
   build:
@@ -11,7 +9,5 @@ jobs:
     - uses: actions/checkout@v4
     - name: Setup Nodejs
       uses: actions/setup-node@v4
-      with:
-        cache: 'npm'
-    - run: npm ci
-    - run: npm test
+    - run: yarn install
+    - run: yarn test
