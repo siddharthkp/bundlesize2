@@ -16,7 +16,13 @@ const summarize = require('./src/utils/summarize')
 const run = async () => {
   const results = analyse(markDuplicates(files))
 
+  console.log({
+    ci,
+    branch,
+    INTERNAL_SKIP_CACHE: process.env.INTERNAL_SKIP_CACHE,
+  })
   if (ci && branch === 'master' && !process.env.INTERNAL_SKIP_CACHE) {
+    console.log('came here')
     await cache.save(results)
   }
   const cachedResults = await cache.read()
