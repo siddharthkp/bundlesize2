@@ -8,7 +8,8 @@
     "bundlesize": "index.js"
   },
   "scripts": {
-    "test": "ava -v tests/index.js"
+    "test": "ava -v tests/index.js",
+    "test:update": "ava --update-snapshots -v tests/index.js"
   },
   "dependencies": {
     "bytes": "^3.1.0",
