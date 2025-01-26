@@ -1,0 +1,15 @@
+name: Test
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup Nodejs
+      uses: actions/setup-node@v4
+      with: 
+        node-version: 22
+    - run: cd cli && npm ci
+    - run: cd cli && npm test
