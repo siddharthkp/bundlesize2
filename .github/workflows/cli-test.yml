@@ -9,5 +9,5 @@ jobs:
     - uses: actions/checkout@v4
     - name: Setup Nodejs
       uses: actions/setup-node@v4
-    - run: cd cli && yarn install
-    - run: cd cli && yarn test
+    - run: cd cli && npm install
+    - run: cd cli && npm test
