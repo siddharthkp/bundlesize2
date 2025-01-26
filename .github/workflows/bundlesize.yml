@@ -11,4 +11,4 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: npx bundlesize2
+      - run: node cli/index.js
