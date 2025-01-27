@@ -175,7 +175,7 @@ To enable checks,
 1. Run `bundlesize` with the flag `bundlesize --enable-github-checks`.
 2. [authorize `bundlesize` to add checks](https://github.com/apps/bundlesize2) (Does not need access to your code)
 
-Checks work with [Travis CI](https://travis-ci.org), [CircleCI](https://circleci.com/), [Wercker](http://www.wercker.com), and [Drone](http://readme.drone.io/).
+Checks work with [GitHub Actions](https://github.com/features/actions), [Travis CI](https://travis-ci.org), [CircleCI](https://circleci.com/), [Wercker](http://www.wercker.com), and [Drone](http://readme.drone.io/).
 
 Using a different CI? You will need to supply an additional 5 environment variables.
 
