@@ -12,7 +12,7 @@ const cli = require('./src/reporters/cli')
 const github = require('./src/reporters/github')
 const build = require('./src/reporters/build')
 const summarize = require('./src/utils/summarize')
-const debug = require('./utils/debug')
+const debug = require('./src/utils/debug')
 
 const run = async () => {
   const results = analyse(markDuplicates(files))
