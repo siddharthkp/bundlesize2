@@ -3,7 +3,7 @@ name: bundlesize
 on: [push]
 
 jobs:
-  build:
+  bundlesize:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -12,4 +12,4 @@ jobs:
         with:
           node-version: 22
       - run: cd cli && npm ci
-      - run: node cli/index.js --debug
+      - run: node cli/index.js

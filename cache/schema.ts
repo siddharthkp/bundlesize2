@@ -17,7 +17,7 @@ try {
     table.string('repo')
     table.string('branch')
     table.string('sha')
-    table.string('filesMatched')
+    table.text('filesMatched')
     table
       .timestamp('created_at')
       .notNullable()
