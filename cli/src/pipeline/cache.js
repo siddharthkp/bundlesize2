@@ -1,5 +1,6 @@
 const { ci, repo, branch, sha } = require('ci-env')
 const fetch = require('node-fetch')
+const debug = require('../utils/debug')
 
 let API = 'https://bundlesize-cache.now.sh'
 if (ci === 'LOCAL') API = 'http://localhost:3001'
@@ -54,6 +55,7 @@ const getFilesMatched = ({ files }) => {
 
 const cache = {
   read: async () => {
+    debug('cache.read if', !repo || process.env.INTERNAL_SKIP_CACHE)
     if (!repo || process.env.INTERNAL_SKIP_CACHE) return
 
     const cachedResults = await api.get({ repo })

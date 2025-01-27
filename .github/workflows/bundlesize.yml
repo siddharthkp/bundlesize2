@@ -12,4 +12,4 @@ jobs:
         with:
           node-version: 22
       - run: cd cli && npm ci
-      - run: node cli/index.js
+      - run: node cli/index.js --debug

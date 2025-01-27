@@ -12,18 +12,22 @@ const cli = require('./src/reporters/cli')
 const github = require('./src/reporters/github')
 const build = require('./src/reporters/build')
 const summarize = require('./src/utils/summarize')
+const debug = require('../utils/debug')
 
 const run = async () => {
   const results = analyse(markDuplicates(files))
 
+  debug('cache if', { ci, branch, skip: !process.env.INTERNAL_SKIP_CACHE })
   if (
     ci &&
     (branch === 'main' || branch === 'master') &&
     !process.env.INTERNAL_SKIP_CACHE
   ) {
+    debug('before cache.save', results)
     await cache.save(results)
   }
   const cachedResults = await cache.read()
+  debug('cache.read', cachedResults)
 
   const summary = summarize(results, cachedResults)
   cli.report(summary)
