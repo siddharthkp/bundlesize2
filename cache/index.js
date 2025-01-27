@@ -1,20 +1,5 @@
-var knex = require('knex')({
-  client: 'pg',
-  connection: {
-    connectionString:
-      process.env.PG_CONNECTION_STRING || process.env.DATABASE_URL,
-    //            heroku                              vercel/neon
-    ssl: { rejectUnauthorized: false },
-  },
-})
-
-async function testConnection() {
-  const result = await knex.select(1)
-  console.log('Connection test', result)
-  return result
-}
-
-testConnection()
+import 'dotenv/config'
+import { sql } from '@vercel/postgres'
 
 module.exports = async (req, res) => {
   const { method } = req
@@ -22,30 +7,29 @@ module.exports = async (req, res) => {
   try {
     if (method === 'GET') {
       console.log('GET', req.query)
+
       const { repo } = req.query
 
       if (!repo) {
-        return res.json({ message: '200 Okay' })
+        const {
+          rows: [{ count }],
+        } = await sql`SELECT COUNT(*) FROM files`
+
+        return res.json({ message: '200 Okay ' + count })
       } else {
-        const _rows = await knex
-          .table('files')
-          .select()
-          .where('repo', repo)
-          .orderBy('created_at', 'desc')
-          .limit(1)
+        const { rows } =
+          await sql`SELECT * FROM FILES WHERE REPO=${repo} ORDER BY created_at DESC LIMIT 1`
 
         let filesMatched = []
-        if (_rows.length) filesMatched = _rows[0].filesMatched
+        if (rows.length) filesMatched = rows[0].filesMatched
 
         return res.json({ filesMatched })
       }
     } else if (method === 'PUT') {
       const { repo, branch, sha, filesMatched } = req.body
       console.log('PUT', req.body)
-      await knex('files')
-        .returning('*')
-        .insert({ repo, branch, sha, filesMatched })
 
+      await sql`INSERT INTO FILES (repo, branch, sha, "filesMatched") VALUES(${repo}, ${branch}, ${sha}, ${filesMatched})`
       return res.json({ message: 'Cached' })
     }
   } catch (error) {
