@@ -72,7 +72,7 @@ if (!configFromFile && !configFromCli) {
 Config not found.
 
 You can read about the configuration options here:
-https://github.com/siddharthkp/bundlesize#configuration
+https://github.com/siddharthkp/bundlesize2#configuration
   `
   )
 }

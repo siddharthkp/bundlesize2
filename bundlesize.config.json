@@ -1,0 +1,8 @@
+{
+  "files": [
+    {
+      "path": "./cli/tests/fixtures/**/*.js",
+      "maxSize": "300 B"
+    }
+  ]
+}
