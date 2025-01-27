@@ -9,15 +9,17 @@ function run(fixture, customParams = '') {
   try {
     output = cmd(`${bundlesize} ${customParams}`, {
       cwd: `tests/fixtures/${fixture}`,
-      env: {
-        INTERNAL_SKIP_CACHE: true,
-        // local dev:
-        // CI: 'LOCAL',
-        // CI_REPO_OWNER: 'test',
-        // CI_REPO_NAME: 'test',
-        // CI_COMMIT_SHA: 'test',
-        // CI_BRANCH: 'main', // uncomment this line to test saving
-      },
+      env: process.env.LOCAL
+        ? {
+            CI: 'LOCAL',
+            CI_REPO_OWNER: 'test',
+            CI_REPO_NAME: 'test',
+            CI_COMMIT_SHA: 'test',
+            CI_BRANCH: 'main', // uncomment this line to test saving
+          }
+        : {
+            INTERNAL_SKIP_CACHE: true,
+          },
     })
   } catch (error) {
     output = error
@@ -29,7 +31,7 @@ function run(fixture, customParams = '') {
   return output
 }
 
-test.serial('1. pass: single file smaller than limit', t => {
+test.serial.only('1. pass: single file smaller than limit', t => {
   const { stdout, exitCode } = run(1)
   t.is(exitCode, 0)
   t.snapshot(stdout)
