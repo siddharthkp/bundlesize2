@@ -1,6 +1,6 @@
 {
   "name": "bundlesize2",
-  "version": "0.0.33",
+  "version": "0.0.34",
   "description": "Keep your bundle size in check",
   "license": "MIT",
   "main": "index.js",
@@ -26,5 +26,9 @@
   "devDependencies": {
     "ava": "^3.15.0",
     "execa": "^4.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/siddharthkp/bundlesize2.git"
   }
 }
