@@ -1,4 +1,4 @@
-const test = require('ava')
+const { default: test } = require('ava')
 const { commandSync: cmd } = require('execa')
 
 const bundlesize = `node ../../../index`

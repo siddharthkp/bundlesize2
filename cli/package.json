@@ -18,13 +18,13 @@
     "commander": "^5.1.0",
     "cosmiconfig": "5.2.1",
     "figures": "^3.2.0",
-    "glob": "^9.3.5",
+    "glob": "^13.0.6",
     "gzip-size": "^5.1.1",
     "node-fetch": "^2.6.7",
     "plur": "^4.0.0"
   },
   "devDependencies": {
-    "ava": "^6.2.0",
+    "ava": "^8.0.1",
     "execa": "^4.0.0"
   },
   "repository": {
